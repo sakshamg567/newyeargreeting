@@ -17,5 +17,4 @@ const greetingSchema = new mongoose.Schema({
 })
 
 const GREETING = mongoose.model("greeting", greetingSchema)
-
 module.exports = GREETING
