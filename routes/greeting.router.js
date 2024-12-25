@@ -7,4 +7,4 @@ router.use(express.urlencoded({extended: true}))
 
 router.post("/", handleGenerateShortidentifier)
 
-module.exports = router
+module.exports = router 
