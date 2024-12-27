@@ -3,7 +3,6 @@
    nanoid = importedNanoid; // Assign it to a variable
 })();
 
-const { nanoid } = require('nanoid');
 const GREETING = require("../models/greeting.model")
 
 const greetings = [
@@ -32,19 +31,21 @@ const greetings = [
 
 async function handleGenerateShortidentifier(req,res){
    const body = req.body
+   console.log(body);
+   
    if(!body.message) {
-      body.message = greetings[Math.random()*20]
+      message = greetings[Math.floor(Math.random()*20)]
    }
-   if(!body.from) {
+   if(!body.name) {
       return res.status(400).json({error: "sender is required"})
    }
    const id =  nanoid(5)
    const greeting = await GREETING.create({
       shortId: id,
-      fromUser: body.from,
-      message: body.message
+      fromUser: body.name,
+      message: message
    })
-   res.redirect(`/:${id}`)
+   res.redirect(`/greeting`)
 }
 
 module.exports = handleGenerateShortidentifier
