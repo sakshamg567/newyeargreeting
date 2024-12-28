@@ -3,6 +3,7 @@ const path = require("path")
 const router = require("./routes/greeting.router")
 const connectToMongoDB = require("./connection")
 const dotenv = require("dotenv")
+const GREETING = require("./models/greeting.model")
 dotenv.config();
 
 
@@ -21,8 +22,19 @@ app.get("/", async(req, res) => {
    res.render("home")
 })
 
-app.get("/greeting", async(req,res) => {
-   res.render("greeting")
+app.get("/:id", async(req,res) => {
+   const shortId = req.params.id;
+   
+   const entry = await GREETING.find({shortId: shortId});
+   if(!entry) {
+      res.redirect("/")
+   }
+   const message = entry[0]?.message;
+   const sender = entry[0]?.fromUser;
+   return res.render("greeting", {
+      message: message,
+      sender: sender
+   })
 })
 
 app.use("/api/greeting", router )

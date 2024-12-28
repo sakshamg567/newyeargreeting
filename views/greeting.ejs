@@ -5,8 +5,83 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Happy New Year</title>
    <script src="https://cdn.tailwindcss.com"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Great+Vibes&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Berkshire+Swash&family=Caveat+Brush&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
-<body style="background: linear-gradient(to bottom, #F7F0EA, #E4DAD1);">
-   <img src="/assets/new-year.jpg" alt="" class="object-cover object-center max-h-screen overflow-hidden">
+<body class="bg-[#e7e1db] flex items-center justify-center min-h-screen flex-col">
+   <div class="flex flex-col items-center text-center max-w-2xl w-full">
+      <span class="bg-gradient-to-r from-[#B4864A] via-[#DBC080] to-[#C49E5F] bg-clip-text text-transparent text-2xl md:text-3xl tracking-wider" style="font-family: Alfa Slab One;">HAPPY</span>
+      <img src="/assets/newyear.png" class="size-8/12" loading="eager">
+      <img src="/assets/flake.png" class="size-[7%]">
+      <span class="bg-gradient-to-r from-[#B4864A] via-[#DBC080] to-[#C49E5F] bg-clip-text text-transparent text-6xl md:text-8xl font-extrabold tracking-wide mt-2" style="font-family: Alfa Slab One;">2025</span>
+      <% if(locals.message) { %>
+      <span class="max-w-lg md:max-w-xl m-8 font-normal text-xl font-serif">
+         <%= message %>
+      </span>
+      <% } %>
+      <% if (locals.sender) { %>
+      <span>
+         "Sent with love by <span class="underline"><%= sender %></span> ✨"
+      </span>
+      <% } else { %>
+         <span>"From Your well wisher"</span>
+      <% } %>
+      <span class="mt-5 text-xl font-bold">Time left until 2025</span>
+      <span id="countdown" class="font-semibold"></span>
+      <script>
+         const targetDate = new Date("Jan 1, 2025, 00:00:00").getTime();
+         const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const remaining = targetDate-now;
+            
+            const days = Math.floor(remaining / (1000*60*60*24));
+            const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `${days} Days ${hours} hours ${minutes} minutes ${seconds} seconds`
+
+
+            if(remaining < 0){
+               document.getElementById("countdown").innerHTML = "🎉 Happy New Year! 🎆"
+            }
+         })
+      </script>
+
+
+
+      <!-- Toast Message -->
+      <div id="toastMessage" class="hidden fixed bottom-16 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-sm p-3 rounded-lg shadow-lg">
+         Link copied to clipboard!
+      </div>
+      <script>
+         function copylink() {
+            const url = window.location.href;
+            const textarea = document.createElement("textarea");
+            textarea.value = url;
+            document.body.appendChild(textarea)
+            textarea.select()
+            document.execCommand("copy")
+            textarea.classList.add("hidden")
+            const toastMessage = document.getElementById("toastMessage")
+            toastMessage.classList.remove("hidden")
+            setTimeout(() => {
+               toastMessage.classList.add("hidden")
+            },100)
+         }
+         
+
+
+      </script>
+   </div>
+   <div class="flex flex-row gap-3 mt-3 -bottom-3">
+      <button onclick=copylink() class="bg-black rounded-md text-white p-3 ">Copy Link</button>
+      <a href="/" class="bg-blue-500 p-3 rounded-md text-white" >Create Your Own</a>
+   </div>
+   <p class="hidden text-green-800 font-bold" id="confirm">The link has been copied to your clipboard</p>
 </body>
 </html>

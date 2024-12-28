@@ -31,10 +31,9 @@ const greetings = [
 
 async function handleGenerateShortidentifier(req,res){
    const body = req.body
-   console.log(body);
    
    if(!body.message) {
-      message = greetings[Math.floor(Math.random()*20)]
+      body.message = greetings[Math.floor(Math.random()*20)]
    }
    if(!body.name) {
       return res.status(400).json({error: "sender is required"})
@@ -43,9 +42,9 @@ async function handleGenerateShortidentifier(req,res){
    const greeting = await GREETING.create({
       shortId: id,
       fromUser: body.name,
-      message: message
+      message: body.message
    })
-   res.redirect(`/greeting`)
+   res.redirect(`/${id}`)
 }
 
 module.exports = handleGenerateShortidentifier

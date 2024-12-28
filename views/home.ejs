@@ -9,21 +9,21 @@
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
-<body class="bg-amber-100/80 text-black flex items-center justify-center min-h-screen">
-   <div class="flex flex-col items-center text-center max-w-2xl w-full">
-      <span class="font-semibold text-5xl sm:text-6xl md:text-7xl align-top mb-8 " style="font-family: Great Vibes;">Happy New Year</span>
-      <span class="inline-block text-xl mt-5 w-4/5">Wishing you a year filled with love, laughter, and unforgettable memories.</span>
+<body class="bg-[#e7e1db] text-black flex items-center justify-center min-h-screen">
+   <div class="flex flex-col items-center text-center max-w-2xl w-full -mt-6">
+      <span class="font-semibold text-[2.7rem] sm:text-6xl md:text-[5.4rem] align-top mb-10 " style="font-family: Great Vibes;">Happy New Year</span>
+      <span class="inline-block text-xl sm:text-2xl md:text-3xl mt-3 w-4/5 ">Wishing you a year filled with love, laughter, and unforgettable memories.</span>
       <form method="POST" action="/api/greeting" class="flex flex-col gap-4 w-5/6 max-w-sm mt-6">
          <span class="font-semibold text-xl mt-3">Create Your Own Greeting</span>
          <label class="text-left -mb-4">Enter Your Name</label>
          <input type="text" name="name" placeholder="Eg. Saksham" class="p-2 border border-gray-300 rounded-md" required>
          <label class="text-left -mb-4">Enter Your Message</label>
          <input type="text" name="message" id="message" class="p-2 border border-gray-300 rounded-md">
-         <p class="self-start -mt-4 text-gray-500">Leave Blank for a random Greeting ✨ </p>
+         <p class="self-start -mt-3 text-gray-500">Leave Blank for a random Greeting ✨ </p>
          <button type="submit" class="bg-blue-500 text-white rounded-md py-2 mt-2">Submit</button>
       </form>
    </div>
-   <p class="absolute bottom-3">Made with <span>♥</span> by Saksham</p>
+   <p class="absolute bottom-0">Made with <span class="text-red-500">♥</span> by Saksham</p>
 </body>
 
 </html>
