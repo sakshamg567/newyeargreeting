@@ -19,7 +19,7 @@
       <img src="/assets/flake.png" class="size-[7%]">
       <span class="bg-gradient-to-r from-[#B4864A] via-[#DBC080] to-[#C49E5F] bg-clip-text text-transparent text-6xl md:text-8xl font-extrabold tracking-wide mt-2" style="font-family: Alfa Slab One;">2025</span>
       <% if(locals.message) { %>
-      <span class="max-w-lg md:max-w-xl m-8 font-normal text-xl font-serif">
+      <span class="max-w-lg md:max-w-xl m-8 font-normal text-2xl font-serif ">
          <%= message %>
       </span>
       <% } %>
@@ -86,7 +86,7 @@
       setTimeout(() => {
          const nav = document.getElementById("nav");
          nav.classList.remove("hidden")
-      }, 3000)
+      }, 1500)
    </script>
    <p class="hidden text-green-800 font-bold" id="confirm">The link has been copied to your clipboard</p>
 </body>
