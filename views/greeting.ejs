@@ -11,6 +11,8 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Berkshire+Swash&family=Caveat+Brush&family=Great+Vibes&display=swap" rel="stylesheet">
+
+   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body class="bg-[#e7e1db] flex items-center justify-center min-h-screen flex-col">
    <div class="flex flex-col items-center text-center max-w-2xl w-full">
@@ -89,5 +91,36 @@
       }, 1500)
    </script>
    <p class="hidden text-green-800 font-bold" id="confirm">The link has been copied to your clipboard</p>
+
+
+   <script>
+      document.addEventListener("DOMContentLoaded", () => {
+         var end = Date.now() + (3 * 1000);
+
+         // go Buckeyes!
+         var colors = ['#8AC926', '#6A4C93', '#FF7F51', '#FF85A1', '#1982C4', '#FFCA3A'];
+         
+         (function frame() {
+         confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 80,
+            origin: { x: 0 },
+            colors: colors
+         });
+         confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 80,
+            origin: { x: 1 },
+            colors: colors
+         });
+         
+         if (Date.now() < end) {
+            requestAnimationFrame(frame);
+         }
+         }());
+      })
+   </script>
 </body>
 </html>
