@@ -38,7 +38,7 @@ async function handleGenerateShortidentifier(req,res){
    if(!body.name) {
       return res.status(400).json({error: "sender is required"})
    }
-   const id =  nanoid(5)
+   const id =  nanoid(10)
    const greeting = await GREETING.create({
       shortId: id,
       fromUser: body.name,
