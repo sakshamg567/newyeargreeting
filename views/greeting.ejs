@@ -71,17 +71,23 @@
             toastMessage.classList.remove("hidden")
             setTimeout(() => {
                toastMessage.classList.add("hidden")
-            },100)
+            },1000)
          }
          
 
 
       </script>
    </div>
-   <div class="flex flex-row gap-3 mt-3 -bottom-3">
-      <button onclick=copylink() class="bg-black rounded-md text-white p-3 ">Copy Link</button>
-      <a href="/" class="bg-blue-500 p-3 rounded-md text-white" >Create Your Own</a>
+   <div class="flex flex-row gap-3 mt-3 -bottom-3 hidden" id="nav">
+      <a href="/" class="bg-black p-3 rounded-md text-white" >Create Your Own</a>
+      <button onclick=copylink() class="bg-blue-500 rounded-md text-white p-3 ">Share</button>
    </div>
+   <script>
+      setTimeout(() => {
+         const nav = document.getElementById("nav");
+         nav.classList.remove("hidden")
+      }, 3000)
+   </script>
    <p class="hidden text-green-800 font-bold" id="confirm">The link has been copied to your clipboard</p>
 </body>
 </html>

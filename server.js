@@ -11,7 +11,7 @@ connectToMongoDB(process.env.MONGO_DB_URI)
 .then(() => console.log('Connected to MongoDB'))
 .catch(() => console.error("CONNECTION FAILED"))
 
-const port = 3000;
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -25,18 +25,24 @@ app.get("/", async(req, res) => {
 app.get("/:id", async(req,res) => {
    const shortId = req.params.id;
    
-   const entry = await GREETING.find({shortId: shortId});
+   const entry = await GREETING.findOne({shortId: shortId});
    if(!entry) {
-      res.redirect("/")
+      return res.redirect("/")
    }
-   const message = entry[0]?.message;
-   const sender = entry[0]?.fromUser;
+   const message = entry?.message;
+   const sender = entry?.fromUser;
    return res.render("greeting", {
       message: message,
       sender: sender
    })
 })
 
+app.get("*", async(req,res)=> {
+   res.redirect("/")
+})
+
 app.use("/api/greeting", router )
 
-app.listen(port, () => console.log("server started"));
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => console.log("server started"));
