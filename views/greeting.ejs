@@ -3,6 +3,11 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta property="og:title" content="Happy New Year!" />
+   <meta property="og:description" content="<%= sender %> has a special New Year message for you!" />
+   <meta property="og:url" content=<%= url %> />
+   <meta property="og:type" content="website" />
+
    <title>Happy New Year</title>
    <script src="https://cdn.tailwindcss.com"></script>
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +31,7 @@
       </span>
       <% } %>
       <% if (locals.sender) { %>
-      <span>
+      <span class="text-xl">
          "Sent with love by <span class="underline"><%= sender %></span> ✨"
       </span>
       <% } else { %>
@@ -35,8 +40,8 @@
       <span class="mt-5 text-xl font-bold">Time left until 2025</span>
       <span id="countdown" class="font-semibold"></span>
       <script>
-         const targetDate = new Date("Jan 1, 2025, 00:00:00").getTime();
-         const interval = setInterval(() => {
+            const targetDate = new Date("Jan 1, 2025, 00:00:00").getTime();
+            const interval = setInterval(() => {
             const now = new Date().getTime();
             const remaining = targetDate-now;
             
@@ -62,9 +67,8 @@
       </div>
       <script>
          function copylink() {
-            const url = window.location.href;
             const textarea = document.createElement("textarea");
-            textarea.value = url;
+            textarea.value = `🎉 *Happy New Year!* 🎉 \n<%= sender %> has a special message just for you! \n Click below to check it out: \n👉 <%= url %> \n Wishing you a year full of happiness and success! 🌟`
             document.body.appendChild(textarea)
             textarea.select()
             document.execCommand("copy")
@@ -78,9 +82,8 @@
          
 
 
-      </script>
-   </div>
-   <div class="flex flex-row gap-3 mt-3 -bottom-3 hidden" id="nav">
+      </script>   </div>
+   <div class="flex flex-row gap-3 mt-10 bottom-3 hidden fixed" id="nav">
       <a href="/" class="bg-black p-3 rounded-md text-white" >Create Your Own</a>
       <button onclick=copylink() class="bg-blue-500 rounded-md text-white p-3 ">Share</button>
    </div>

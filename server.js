@@ -31,9 +31,11 @@ app.get("/:id", async(req,res) => {
    }
    const message = entry?.message;
    const sender = entry?.fromUser;
+   const url = `https://newyeargreeting.onrender.com/${shortId}`
    return res.render("greeting", {
       message: message,
-      sender: sender
+      sender: sender, 
+      url: url
    })
 })
 
